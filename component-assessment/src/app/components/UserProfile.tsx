@@ -1,6 +1,7 @@
 // components/UserProfile.tsx
 import React, { useState } from 'react';
 import { User } from '../types/types';
+import Image from 'next/image';
 
 interface UserProfileProps {
   user: User;
@@ -86,10 +87,12 @@ const UserProfile: React.FC<UserProfileProps> = ({
 
       <div className='flex flex-col md:flex-row gap-8'>
         <div className='flex-shrink-0'>
-          <img
+          <Image
             src={user.avatar}
             alt={`${user.name}'s avatar`}
-            className='w-32 h-32 rounded-full object-cover border-4 border-gray-200'
+            width={128}
+            height={128}
+            className='rounded-full object-cover border-4 border-gray-200'
           />
           <div className='mt-4 text-center'>
             <span

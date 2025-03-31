@@ -44,7 +44,7 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ initialUsers }) => {
 
   const handleEditUser = () => {
     if (selectedUser) {
-      const { id, avatar, joinDate, ...userData } = selectedUser;
+      const { id, ...userData } = selectedUser;
       setEditingUser({ ...userData, id });
       setViewMode('form');
     }
@@ -59,8 +59,8 @@ const UserDashboard: React.FC<UserDashboardProps> = ({ initialUsers }) => {
             ? {
                 ...u,
                 ...userData,
-                avatar: u.avatar, // Keep existing avatar
-                joinDate: u.joinDate, // Keep existing join date
+                avatar: u.avatar, 
+                joinDate: u.joinDate, 
               }
             : u
         )

@@ -24,4 +24,4 @@ export interface UserFormData {
 }
 
 // types/types.ts
-export type ViewMode = 'list' | 'profile' | 'form' | 'todos';
+export type ViewMode = 'list' | 'profile' | 'form';

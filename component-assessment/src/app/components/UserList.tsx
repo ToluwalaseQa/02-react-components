@@ -23,40 +23,58 @@ const UserList: React.FC<UserListProps> = ({
     const matchesSearch =
       user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.email.toLowerCase().includes(searchTerm.toLowerCase());
-
     const matchesStatus =
       statusFilter === 'all' ||
       (statusFilter === 'active' && user.isActive) ||
       (statusFilter === 'inactive' && !user.isActive);
-
     return matchesSearch && matchesStatus;
   });
 
   return (
     <div className='space-y-4 px-2 sm:px-0'>
-      <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
-        <div className='flex-1'>
+      <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4'>
+        {/* Search Bar */}
+        <div className='relative w-full sm:w-64'>
           <input
             type='text'
-            placeholder='Search by name or email...'
-            className='w-full p-2 border rounded'
+            placeholder='Search...'
+            className='w-full pl-8 pr-2 py-2 border rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500'
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
+          {/* Search Icon */}
+          <svg
+            className='absolute left-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth='2'
+              d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
+            />
+          </svg>
         </div>
-        <div className='flex space-x-2'>
+
+        {/* Dropdown and Button Container */}
+        <div className='flex items-center gap-3'>
           <select
-            className='p-2 border rounded'
+            className='p-2 border rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-700'
             value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value as any)}
+            onChange={(e) =>
+              setStatusFilter(e.target.value as 'all' | 'active' | 'inactive')
+            }
           >
             <option value='all'>All Users</option>
-            <option value='active'>Active Users</option>
-            <option value='inactive'>Inactive Users</option>
+            <option value='active'>Active</option>
+            <option value='inactive'>Inactive</option>
           </select>
           <button
             onClick={onAddUser}
-            className='px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors'
+            className='px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 transition-colors text-sm'
           >
             Add User
           </button>
@@ -64,11 +82,11 @@ const UserList: React.FC<UserListProps> = ({
       </div>
 
       {filteredUsers.length === 0 ? (
-        <div className='p-8 text-center text-gray-500'>
+        <div className='p-8 text-center text-gray-500 text-sm sm:text-base'>
           No users found matching your criteria.
         </div>
       ) : (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
           {filteredUsers.map((user) => (
             <UserCard key={user.id} user={user} onViewProfile={onViewProfile} />
           ))}

@@ -1,6 +1,6 @@
 // components/UserForm.tsx
 import React, { useState, useEffect } from 'react';
-import { User, UserFormData } from '../types/types';
+import { UserFormData } from '../types/types';
 
 interface UserFormProps {
   initialData?: UserFormData;

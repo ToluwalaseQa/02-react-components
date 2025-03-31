@@ -1,6 +1,7 @@
 // components/UserCard.tsx
 import React from 'react';
 import { User } from '../types/types';
+import Image from 'next/image'; // Add this import
 
 interface UserCardProps {
   user: User;
@@ -11,10 +12,12 @@ const UserCard: React.FC<UserCardProps> = ({ user, onViewProfile }) => {
   return (
     <div className='border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow'>
       <div className='flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4'>
-        <img
+        <Image
           src={user.avatar}
           alt={`${user.name}'s avatar`}
-          className='w-16 h-16 rounded-full object-cover'
+          width={70}
+          height={70}
+          className='rounded-full object-cover'
         />
         <div className='flex-1'>
           <h3 className='font-semibold text-lg'>{user.name}</h3>
@@ -36,7 +39,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, onViewProfile }) => {
       <div className='mt-4 flex justify-end'>
         <button
           onClick={() => onViewProfile(user.id)}
-          className='px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors'
+          className='px-4 py-2 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 transition-colors'
         >
           View Profile
         </button>
