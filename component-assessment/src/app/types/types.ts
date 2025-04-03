@@ -16,7 +16,7 @@ export interface UserFormData {
   id?: number;
   name: string;
   email: string;
-  avatar?: string; // Add this line
+  avatar?: string; 
   role: string;
   department: string;
   location: string;
